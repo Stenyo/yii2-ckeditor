@@ -27,7 +27,7 @@
     },
     "require": {
         "yiisoft/yii2": "~2.0.0",
-        "ckeditor/ckeditor": "dev-full/4.x"
+        "ckeditor/ckeditor": "dev-full/4.x.x"
     },
     "require-dev": {
         "phpunit/phpunit": "4.*"
