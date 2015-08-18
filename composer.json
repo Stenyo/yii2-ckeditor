@@ -1,5 +1,5 @@
 {
-    "name": "2amigos/yii2-ckeditor-widget",
+    "name": "stenyo/yii2-ckeditor",
     "description": "CKEditor widget for Yii2.",
     "type": "yii2-extension",
     "keywords": [
