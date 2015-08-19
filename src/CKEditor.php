@@ -35,7 +35,7 @@ class CKEditor extends InputWidget {
     public function init() {
         parent::init();
         $this->initOptions();
-        $view = $this->getView();
+        //$view = $this->getView();
         $id = Json::encode($this->options['id']);
         if ($this->enabledKCFinder) {
             $kcFinderBundle = CKFinderAsset::register($this->getView());
@@ -47,12 +47,6 @@ class CKEditor extends InputWidget {
                         'filebrowserUploadUrl' => $kcFinderBaseUrl . '/core/connector/php/connector.php?command=QuickUpload&type=Files',
                             ]
             );
-
-            $jsData = "CKEDITOR.replace($id";
-            $jsData .= empty($this->editorOptions) ? '' : (', ' . Json::encode($this->editorOptions));
-            $jsData .= ").on('blur', function(){this.updateElement(); jQuery(this.element.$).trigger('blur');});";
-            $view->registerJs($jsData);
-            CKEditorAsset::register($view);
         }
     }
 
@@ -81,12 +75,11 @@ class CKEditor extends InputWidget {
 
         $id = $this->options['id'];
 
-        $options = $this->clientOptions !== false && !empty($this->clientOptions) ? Json::encode($this->clientOptions) : '{}';
+        $options = $this->editorOptions !== false && !empty($this->editorOptions) ? Json::encode($this->editorOptions) : '{}';
 
         $js[] = "CKEDITOR.replace('$id', $options);";
         $js[] = "dosamigos.ckEditorWidget.registerOnChangeHandler('$id');";
-
-        if (isset($this->clientOptions['filebrowserUploadUrl'])) {
+        if (isset($this->editorOptions['filebrowserUploadUrl'])) {
             $js[] = "dosamigos.ckEditorWidget.registerCsrfImageUploadHandler();";
         }
 
